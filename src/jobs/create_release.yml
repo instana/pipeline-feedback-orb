@@ -7,8 +7,8 @@ parameters:
   endpoint:
     type: env_var_name
     description: >
-      'URL of your Instana tenant unit, e.g.: https://apm-awesome.instana.io.
-      For self-managed (a.k.a. on-premise) setups, you can also add the port to use, e.g.: https://instana.awesome.com:1444.'
+      URL of your Instana tenant unit, e.g.: https://apm-awesome.instana.io.
+      For self-managed (a.k.a. on-premise) setups, you can also add the port to use, e.g.: https://instana.awesome.com:1444.
   api_token:
     type: env_var_name
     description: A valid API token with the "Configuration of releases" permissions.

@@ -1,5 +1,4 @@
-description: >
-  Sample usage.
+description: Sample usage.
 
 usage:
   version: 2.1
@@ -11,6 +10,7 @@ usage:
         - pipeline-feedback/create_release
   jobs:
     create_release:
+      executor: default
       steps:
         - pipeline-feedback/create_release:
             endpoint: https://apm-awesome.instana.io
