@@ -1,20 +1,13 @@
-description: >
-  Sample usage.
+description: Sample usage.
 
 usage:
   version: 2.1
   orbs:
-    pipeline-feedback: instana/pipeline-feedback@1.0.0
+    pipeline-feedback: instana/pipeline-feedback@0.1.0
   workflows:
     create_release:
       jobs:
-        - pipeline-feedback/create_release
-  jobs:
-    create_release:
-      steps:
         - pipeline-feedback/create_release:
-            endpoint: https://apm-awesome.instana.io
-            api_token: < api token, store it in secrets if you can >
             release_name: My awesome release
             release_scope: >
               {
