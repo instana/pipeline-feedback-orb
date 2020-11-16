@@ -9,11 +9,11 @@ function create_release() {
 
     echo "${INSTANA_RELEASE_SCOPE}" > scope.json
 
-    curl --location --request POST "${INSTANA_ENDPOINT}/api/releases" \
+    curl --location --request POST "${!INSTANA_ENDPOINT_URL}/api/releases" \
         --silent \
         --fail \
         --show-error \
-        --header "Authorization: apiToken ${INSTANA_TOKEN}" \
+        --header "Authorization: apiToken ${!INSTANA_API_TOKEN}" \
         --header "Content-Type: application/json" \
         --data "{
         \"name\": \"${INSTANA_RELEASE_NAME}\",
