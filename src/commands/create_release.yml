@@ -21,8 +21,8 @@ parameters:
 steps:
   - run:
       environment:
-        INSTANA_ENDPOINT: <<parameters.endpoint>>
-        INSTANA_TOKEN: <<parameters.api_token>>
+        INSTANA_ENDPOINT_URL: <<parameters.endpoint>>
+        INSTANA_API_TOKEN: <<parameters.api_token>>
         INSTANA_RELEASE_NAME: <<parameters.release_name>>
         INSTANA_RELEASE_SCOPE: <<parameters.release_scope>>
       name: Create new release
