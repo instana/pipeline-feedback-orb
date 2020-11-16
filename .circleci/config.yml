@@ -2,7 +2,7 @@ version: 2.1
 
 orbs:
   # Replace this with your own!
-  pipeline-feedback: instana/pipeline-feedback@<<pipeline.parameters.dev-orb-version>>
+  # pipeline-feedback: instana/pipeline-feedback@<<pipeline.parameters.dev-orb-version>>
   orb-tools: circleci/orb-tools@10.0
   bats: circleci/bats@1.0
   shellcheck: circleci/shellcheck@2.0
@@ -22,17 +22,17 @@ parameters:
     type: string
     default: "dev:alpha"
 
-jobs:
-  # Define one or more jobs which will utilize your orb's commands and parameters to validate your changes.
-  integration-test-1:
-    docker:
-      - image: cimg/base:stable
-    steps:
-      - checkout
-      # "greet" is a sample command packaged with this orb config.
-      # This sample integration test will run as long as the greet command exists. Once you remove the greet command you should remove this line.
-      # Push new changes first, before adding new tests to your config.
-      - pipeline-feedback/greet
+# jobs:
+#   # Define one or more jobs which will utilize your orb's commands and parameters to validate your changes.
+#   integration-test-1:
+#     docker:
+#       - image: cimg/base:stable
+#     steps:
+#       - checkout
+#       # "greet" is a sample command packaged with this orb config.
+#       # This sample integration test will run as long as the greet command exists. Once you remove the greet command you should remove this line.
+#       # Push new changes first, before adding new tests to your config.
+#       - pipeline-feedback/greet
 
 workflows:
   # Prior to producing a development orb (which requires credentials) basic validation, linting, and even unit testing can be performed.
@@ -75,27 +75,27 @@ workflows:
   # when the run-integration-tests pipeline parameter is set to true.
   # It is meant to be triggered by the "trigger-integration-tests-workflow"
   # job, and run tests on <your orb>@dev:${CIRCLE_SHA1:0:7}.
-  integration-test_deploy:
-    when: << pipeline.parameters.run-integration-tests >>
-    jobs:
-      # Run any integration tests defined within the `jobs` key.
-      - integration-test-1
-      # Publish a semver version of the orb. relies on
-      # the commit subject containing the text "[semver:patch|minor|major|skip]"
-      # as that will determine whether a patch, minor or major
-      # version will be published or if publishing should
-      # be skipped.
-      # e.g. [semver:patch] will cause a patch version to be published.
-      - orb-tools/dev-promote-prod-from-commit-subject:
-          orb-name: instana/pipeline-feedback
-          context: orb-publishing
-          add-pr-comment: false
-          fail-if-semver-not-indicated: true
-          publish-version-tag: false
-          requires:
-            - integration-test-1
-          filters:
-            branches:
-              only: 
-                - master
-                - main
+  # integration-test_deploy:
+  #   when: << pipeline.parameters.run-integration-tests >>
+  #   jobs:
+  #     # Run any integration tests defined within the `jobs` key.
+  #     - integration-test-1
+  #     # Publish a semver version of the orb. relies on
+  #     # the commit subject containing the text "[semver:patch|minor|major|skip]"
+  #     # as that will determine whether a patch, minor or major
+  #     # version will be published or if publishing should
+  #     # be skipped.
+  #     # e.g. [semver:patch] will cause a patch version to be published.
+  #     - orb-tools/dev-promote-prod-from-commit-subject:
+  #         orb-name: instana/pipeline-feedback
+  #         context: orb-publishing
+  #         add-pr-comment: false
+  #         fail-if-semver-not-indicated: true
+  #         publish-version-tag: false
+  #         requires:
+  #           - integration-test-1
+  #         filters:
+  #           branches:
+  #             only: 
+  #               - master
+  #               - main
