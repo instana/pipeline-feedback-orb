@@ -13,8 +13,6 @@ usage:
       executor: default
       steps:
         - pipeline-feedback/create_release:
-            endpoint: https://apm-awesome.instana.io
-            api_token: < api token, store it in secrets if you can >
             release_name: My awesome release
             release_scope: >
               {
