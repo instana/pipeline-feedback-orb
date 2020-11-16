@@ -1,0 +1,8 @@
+version: 2.1
+
+description: >
+  Create Instana Pipeline Feedback releases from your CircleCI workflows.
+
+display:
+  home_url: "https://www.instana.com/docs"
+  source_url: "https://www.github.com/instana/pipeline-feedback-orb"

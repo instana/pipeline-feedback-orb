@@ -1,0 +1,12 @@
+description: >
+  Executor for the Pipeline Feedback Orb using the LTS version of 'cimg/node'.
+  The dependencies of the commands of this orb are: bash, curl and jq.
+docker:
+  - image: 'cimg/node:<<parameters.tag>>'
+parameters:
+  tag:
+    default: lts
+    description: >
+      Pick a specific circleci/node image variant:
+      https://hub.docker.com/r/cimg/node/tags
+    type: string
