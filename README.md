@@ -12,7 +12,7 @@ The following example assumes that you set the `INSTANA_ENDPOINT_URL` and `INSTA
 version: 2.1
 
 orbs:
-  pipeline-feedback: instana/pipeline-feedback@v1.0.0-RC1
+  pipeline-feedback: instana/pipeline-feedback@0.1.0
 
 workflows:
   create_release:
@@ -27,7 +27,7 @@ In case you want to customize which environment variables to use to look up the 
 version: 2.1
 
 orbs:
-  pipeline-feedback: instana/pipeline-feedback@v1.0.0-RC1
+  pipeline-feedback: instana/pipeline-feedback@0.1.0
 
 workflows:
   create_release:
