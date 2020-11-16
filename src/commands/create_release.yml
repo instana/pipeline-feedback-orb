@@ -18,14 +18,16 @@ parameters:
     description: The name of this release in Instana.
   release_scope:
     type: string
-    description: JSON-encoded scoping information for the release. If not provided, the release will be marked as global to your tenant unit.
+    description: >
+      JSON-encoded scoping information for the release.
+      If not provided, the release will be marked as global to your tenant unit.
     default: "{}"
 
 steps:
   - run:
       environment:
-        INSTANA_ENDPOINT_URL: <<parameters.endpoint>>
-        INSTANA_API_TOKEN: <<parameters.api_token>>
+        INSTANA_ENDPOINT_URL_NAME: <<parameters.endpoint>>
+        INSTANA_API_TOKEN_NAME: <<parameters.api_token>>
         INSTANA_RELEASE_NAME: <<parameters.release_name>>
         INSTANA_RELEASE_SCOPE: <<parameters.release_scope>>
       name: Create new release
