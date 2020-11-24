@@ -1,15 +1,31 @@
 description: Sample usage.
 
 usage:
-  version: 2.1
+  version: "2.1"
+
   orbs:
-    pipeline-feedback: instana/pipeline-feedback@0.1.0
+    pipeline-feedback: instana/pipeline-feedback@1.0.0
+
   workflows:
-    create_release:
+    build_and_release_payment_service:
       jobs:
-        - pipeline-feedback/create_release:
-            release_name: My awesome release
-            release_scope: >
+        - build_payment_service # In this job happens the build of your system and deployment of images in registries
+        - release_payment_service: # This job deploys your containers across your infrastructure
+            requires: [ build_payment_service ]
+
+  jobs:
+    build_payment_service:
+      docker:
+        - image: cimg/node:lts
+      steps:
+        - run: echo Build
+    release_payment_service:
+      docker:
+        - image: cimg/node:lts
+      steps:
+        - pipeline-feedback/create_release: # Notify Instana that things are about to get interesting
+            release_name: "My awesome release (CircleCI: ${CIRCLE_JOB}/${CIRCLE_BUILD_NUM})"
+            release_scope: |
               {
                 "applications": [
                   { "name": "My Awesome App" },
@@ -27,3 +43,4 @@ usage:
                   }
                 ]
               }
+        - run: echo "Do a lot of release"

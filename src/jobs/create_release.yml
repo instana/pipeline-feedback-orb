@@ -1,9 +1,13 @@
 description: >
   Create a new Pipeline Feedback release in Instana.
 
-executor: default
+docker:
+  - image: <<parameters.executor_image>>
 
 parameters:
+  executor_image:
+    type: string
+    default: cimg/node:lts
   endpoint:
     type: env_var_name
     default: INSTANA_ENDPOINT_URL

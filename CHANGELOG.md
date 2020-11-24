@@ -6,10 +6,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+## [1.0.1] - 2020-11-24
+
+- Make executor configurable for the job.
+- Spiced up the example to provide a more realistic workflow structure.
+
 ## [1.0.0] - 2020-11-15
 
 ### Added
 
 - Initial Release
 
+[1.0.1]: https://github.com/instana/pipeline-feedback-orb/tag/v1.0.1
 [1.0.0]: https://github.com/instana/pipeline-feedback-orb/tag/v1.0.0
