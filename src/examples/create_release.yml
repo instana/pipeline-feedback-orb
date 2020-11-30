@@ -1,4 +1,7 @@
-description: Sample usage.
+description: >
+  The sample usage of the Instana Pipeline Feedback CircleCI Orb shows a workflow that includes the build and release of an application.
+  Before the release is performed, data about the upcoming release is submitted to Instana, including CircleCI data like the build identifier and build number in the release name to be displayed in Instana.
+  In the example, the release in Instana is scoped to the `My Awesome App` Application Perspective and, additionally, two services, `Cool service #1` and `Cool service #2`.
 
 usage:
   version: "2.1"
@@ -24,12 +27,11 @@ usage:
         - image: cimg/node:lts
       steps:
         - pipeline-feedback/create_release: # Notify Instana that things are about to get interesting
-            release_name: "My awesome release (CircleCI: ${CIRCLE_JOB}/${CIRCLE_BUILD_NUM})"
+            release_name: "My Awesome App release (CircleCI: ${CIRCLE_JOB}/${CIRCLE_BUILD_NUM})"
             release_scope: |
               {
                 "applications": [
-                  { "name": "My Awesome App" },
-                  { "name": "My Even More Awesome App" },
+                  { "name": "My Awesome App" }
                 ],
                 "services": [
                   { "name": "Cool service #1" },
