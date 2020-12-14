@@ -3,8 +3,13 @@
 set -x
 set -eo pipefail
 
+sudo apt-get update
+sudo apt-get install -y gettext
+
 function create_release() {
-    echo "Creating release ${INSTANA_RELEASE_NAME}"
+    readonly release_name=$(echo "${INSTANA_RELEASE_NAME}" | envsubst)
+
+    echo "Creating release '${release_name}'"
 
     if [ -z "${INSTANA_RELEASE_SCOPE}" ]; then
         INSTANA_RELEASE_SCOPE='{}'
@@ -24,7 +29,7 @@ function create_release() {
         --header "Authorization: apiToken ${!INSTANA_API_TOKEN_NAME}" \
         --header "Content-Type: application/json" \
         --data "{
-    \"name\": \"${INSTANA_RELEASE_NAME}\",
+    \"name\": \"${release_name}\",
     \"start\": $(date +%s)000,
     \"applications\": $(jq -r '.applications' < scope.json),
     \"services\": $(jq -r '.services' < scope.json)
