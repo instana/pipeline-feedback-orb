@@ -25,6 +25,9 @@ parameters:
 
 steps:
   - run:
+      name: Install gettext
+      command: apt-get update && apt-get install -y --no-install-recommends gettext
+  - run:
       environment:
         INSTANA_ENDPOINT_URL_NAME: <<parameters.endpoint>>
         INSTANA_API_TOKEN_NAME: <<parameters.api_token>>
