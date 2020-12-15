@@ -1,7 +1,3 @@
-FROM ubuntu:focal
+FROM alpine:3.12
 
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends gnupg2 ca-certificates jq curl gettext  && \
-    apt-get upgrade -y && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
+RUN apk add --no-cache openssh-client git curl jq bash gettext
