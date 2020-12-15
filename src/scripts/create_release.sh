@@ -3,11 +3,31 @@
 set -x
 set -eo pipefail
 
-sudo apt-get update
-sudo apt-get install -y gettext
-
 function create_release() {
-    readonly release_name=$(echo "${INSTANA_RELEASE_NAME}" | envsubst)
+    missing_dependencies=false
+
+    if ! which curl; then
+        echo 'Missing dependency: The curl command is not available'
+        missing_dependencies=true
+    fi
+
+    if ! which jq; then
+        echo 'Missing dependency: The jq command is not available'
+        missing_dependencies=true
+    fi
+
+    if [ ${missing_dependencies} == true ]; then
+        echo 'Missing dependencies detected, aborting'
+        exit 1
+    fi
+
+    if which envsubst; then
+        release_name=$(echo "${INSTANA_RELEASE_NAME}" | envsubst)
+    else
+        echo 'The envsubst command is not available, skipping the interpolation of environment variables in the release name'
+
+        release_name="${INSTANA_RELEASE_NAME}"
+    fi
 
     echo "Creating release '${release_name}'"
 

@@ -6,12 +6,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
-## [1.0.2] - 2020-12-14
+## [1.0.2] - 2020-12-15
 
-- Interpolate environment variables in release names.
+- Introduce a new default executor, `instana/pipeline-feedback-orb-executor`, to remove dependencies on specific package managers from the `create_release.sh` script.
 
 ## [1.0.1] - 2020-11-24
 
+- Interpolate environment variables in release names.
 - Make executor configurable for the job.
 - Spiced up the example to provide a more realistic workflow structure.
 
