@@ -26,9 +26,14 @@ parameters:
     type: string
     description: JSON-encoded scoping information for the release. If not provided, the release will be marked as global to your tenant unit.
     default: "{}"
+  install_gettext:
+    type: boolean
+    description: Wheter to install gettext on the executor image or not.
+    default: true
 
 steps:
   - create_release:
+      install_gettext: << parameters.install_gettext>>
       endpoint: << parameters.endpoint >>
       api_token: << parameters.api_token >>
       release_name: << parameters.release_name >>
