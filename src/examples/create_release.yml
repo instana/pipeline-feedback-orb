@@ -7,7 +7,7 @@ usage:
   version: "2.1"
 
   orbs:
-    pipeline-feedback: instana/pipeline-feedback@1.0.0
+    pipeline-feedback: instana/pipeline-feedback@1.1
 
   workflows:
     build_and_release_payment_service:
