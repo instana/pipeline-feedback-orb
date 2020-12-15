@@ -108,7 +108,12 @@ workflows:
               only:
                 - master
     jobs:
+      - docker/hadolint:
+          dockerfiles: default-executor/Dockerfile
+          ignore-rules: DL3018
       - docker/publish:
           path: default-executor/
           image: instana/pipeline-feedback-orb-executor
           use-remote-docker: true
+          requires:
+            - docker/hadolint
