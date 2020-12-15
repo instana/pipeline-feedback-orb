@@ -22,11 +22,18 @@ parameters:
       JSON-encoded scoping information for the release.
       If not provided, the release will be marked as global to your tenant unit.
     default: "{}"
+  install_gettext:
+    type: boolean
+    description: Wheter to install gettext on the executor image or not.
+    default: true
 
 steps:
-  - run:
-      name: Install gettext
-      command: apt-get update && apt-get install -y --no-install-recommends gettext
+  - when:
+      condition: <<parameters.install_gettext>>
+      steps:
+        - run:
+            name: Install gettext
+            command: <<include(scripts/install_gettext.sh)>>
   - run:
       environment:
         INSTANA_ENDPOINT_URL_NAME: <<parameters.endpoint>>
