@@ -24,7 +24,7 @@ usage:
         - run: echo Build
     release_payment_service:
       docker:
-        - image: cimg/node:lts
+        - image: instana/pipeline-feedback-orb-executor:latest # Need to use a container with jq, curl and optionally envsubst
       steps:
         - pipeline-feedback/create_release: # Notify Instana that things are about to get interesting
             release_name: "My Awesome App release (CircleCI: ${CIRCLE_JOB}/${CIRCLE_BUILD_NUM})"
