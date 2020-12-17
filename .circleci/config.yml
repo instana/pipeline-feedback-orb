@@ -42,7 +42,6 @@ workflows:
       - orb-tools/pack # Pack orb source
       - shellcheck/check:
           dir: ./src/scripts
-          exclude: SC2148
       # optional: Run BATS tests against your scripts
       # - bats/run:
       #     path: ./src/tests
@@ -108,7 +107,12 @@ workflows:
               only:
                 - master
     jobs:
+      - docker/hadolint:
+          dockerfiles: default-executor/Dockerfile
+          ignore-rules: DL3018
       - docker/publish:
           path: default-executor/
           image: instana/pipeline-feedback-orb-executor
           use-remote-docker: true
+          requires:
+            - docker/hadolint
