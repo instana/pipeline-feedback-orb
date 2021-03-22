@@ -25,7 +25,6 @@ function create_release() {
         release_name=$(echo "${INSTANA_RELEASE_NAME}" | envsubst)
     else
         echo 'The envsubst command is not available, skipping the interpolation of environment variables in the release name'
-
         release_name="${INSTANA_RELEASE_NAME}"
     fi
 
@@ -48,6 +47,7 @@ function create_release() {
         --show-error \
         --header "Authorization: apiToken ${!INSTANA_API_TOKEN_NAME}" \
         --header "Content-Type: application/json" \
+        --header "User-Agent: Instana/CircleCI" \
         --data "{
     \"name\": \"${release_name}\",
     \"start\": $(date +%s)000,
