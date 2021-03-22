@@ -40,6 +40,14 @@ workflows:
 
 In the example above, the endpoint URL and the matching API token will be looked up using the `MY_INSTANA_ENDPOINT_URL` and `MY_INSTANA_API_TOKEN` environment variables, respectively.
 
+## Testing
+
+There is a test script available in the `src/tests` folder. The test is executable with [bats](https://github.com/bats-core/bats-core). The script can be executed from the root dir by
+```bash
+INSTANA_ENDPOINT_URL=<<YOUR_ENDPOINT_URL>> INSTANA_API_TOKEN=<<YOUR_API_TOKEN>> \
+bats ./src/tests/create_release.bats
+```
+
 ## Contributing
 
 Ah, our kind of person!

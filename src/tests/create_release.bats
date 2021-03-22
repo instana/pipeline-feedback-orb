@@ -19,7 +19,7 @@ export INSTANA_RELEASE_NAME="BATS 2 Test CircleCI release"
     export INSTANA_RELEASE_SCOPE='
     {
         "applications": [{
-            "name": "cordelia"
+            "name": "test-acceptor"
         }]
     }'
 
@@ -27,7 +27,19 @@ export INSTANA_RELEASE_NAME="BATS 2 Test CircleCI release"
     [ "$status" -eq 0 ]
 }
 
-@test '2: Malformed scope JSON' {
+@test '3: Create Service-scoped Release' {
+    export INSTANA_RELEASE_SCOPE='
+    {
+        "services": [{
+            "name": "acceptor"
+        }]
+    }'
+
+    run ./src/scripts/create_release.sh
+    [ "$status" -eq 0 ]
+}
+
+@test '4: Malformed scope JSON' {
     export INSTANA_RELEASE_SCOPE='{'
 
     run ./src/scripts/create_release.sh
