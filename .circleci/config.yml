@@ -1,7 +1,7 @@
 version: 2.1
 
 orbs:
-#  pipeline-feedback: instana/pipeline-feedback@<<pipeline.parameters.dev-orb-version>>
+  pipeline-feedback: instana/pipeline-feedback@<<pipeline.parameters.dev-orb-version>>
   docker: circleci/docker@1.5.0
   orb-tools: circleci/orb-tools@10.0
   bats: circleci/bats@1.0
@@ -22,15 +22,15 @@ parameters:
     type: string
     default: "dev:alpha"
 
-# jobs:
-#   # Define one or more jobs which will utilize your orb's commands and parameters to validate your changes.
-#   integration-test-1:
-#     docker:
-#       - image: instana/pipeline-feedback-orb-executor:latest
-#     steps:
-#       - checkout
-#       - pipeline-feedback/create_release:
-#           release_name: Integration Test Release
+jobs:
+  # Define one or more jobs which will utilize your orb's commands and parameters to validate your changes.
+  integration-test-1:
+    docker:
+      - image: instana/pipeline-feedback-orb-executor:latest
+    steps:
+      - checkout
+      - pipeline-feedback/create_release:
+          release_name: Integration Test Release
 
 workflows:
   # Prior to producing a development orb (which requires credentials) basic validation, linting, and even unit testing can be performed.

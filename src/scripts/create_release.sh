@@ -47,7 +47,7 @@ function create_release() {
         --show-error \
         --header "Authorization: apiToken ${!INSTANA_API_TOKEN_NAME}" \
         --header "Content-Type: application/json" \
-        --header "User-Agent: Instana/CircleCI" \
+        --header "User-Agent: instana/pipeline-feedback-orb/1.1" \
         --data "{
     \"name\": \"${release_name}\",
     \"start\": $(date +%s)000,

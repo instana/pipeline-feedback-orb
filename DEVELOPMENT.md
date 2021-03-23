@@ -19,10 +19,10 @@ bats ./src/tests/create_release.bats
 The application and service name in the test might be adjusted to your needs.
 The expected output of the test is
 ```bash
- ✓ 1: Create Global Release
- ✓ 2: Create Application-scoped Release
- ✓ 3: Create Service-scoped Release
- ✓ 4: Malformed scope JSON
+1: Create Global Release
+2: Create Application-scoped Release
+3: Create Service-scoped Release
+4: Malformed scope JSON
 ```
 
 ## Release process
