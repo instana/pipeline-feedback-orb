@@ -5,6 +5,7 @@ set -eo pipefail
 
 function create_release() {
     missing_dependencies=false
+    orb_version="${ORB_VERSION:-1.1.2}"
 
     if ! which curl; then
         echo 'Missing dependency: The curl command is not available'
@@ -47,7 +48,7 @@ function create_release() {
         --show-error \
         --header "Authorization: apiToken ${!INSTANA_API_TOKEN_NAME}" \
         --header "Content-Type: application/json" \
-        --header "User-Agent: instana/pipeline-feedback-orb/1.1" \
+        --header "User-Agent: instana/pipeline-feedback-orb/${orb_version}" \
         --data "{
     \"name\": \"${release_name}\",
     \"start\": $(date +%s)000,
