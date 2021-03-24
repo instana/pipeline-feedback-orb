@@ -3,6 +3,8 @@
 set -x
 set -eo pipefail
 
+readonly version='dev'
+
 function create_release() {
     missing_dependencies=false
     orb_version="${ORB_VERSION:-1.1.2}"

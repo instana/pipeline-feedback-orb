@@ -86,10 +86,15 @@ workflows:
       - orb-tools/dev-promote-prod-from-commit-subject:
           orb-name: instana/pipeline-feedback
           context: orb-publishing
+          checkout: false # We want to control the checkout because we want to inject the version in the scripts
           add-pr-comment: false
           fail-if-semver-not-indicated: true
           publish-version-tag: true
           ssh-fingerprints: 16:0b:f1:b0:af:47:67:d5:69:49:a4:d8:96:a8:42:8b
+          pre-steps:
+            - checkout
+            - run:
+                command: echo "${ORB_VERSION}"| sed -E "s|${ORB_NAME}@||" | xargs -I {} sed -i '' -e "s/version='dev'.*/version='{}'/" src/scripts/create_release.sh
           # requires:
           #   - integration-test-1
           filters:
