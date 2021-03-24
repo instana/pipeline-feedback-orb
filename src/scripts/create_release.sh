@@ -7,7 +7,6 @@ readonly version='dev'
 
 function create_release() {
     missing_dependencies=false
-    orb_version="${ORB_VERSION:-1.1.2}"
 
     if ! which curl; then
         echo 'Missing dependency: The curl command is not available'
@@ -44,15 +43,13 @@ function create_release() {
         exit 1
     fi
 
-    version=$(<.version)
-
     curl --location --request POST "${!INSTANA_ENDPOINT_URL_NAME}/api/releases" \
         --silent \
         --fail \
         --show-error \
         --header "Authorization: apiToken ${!INSTANA_API_TOKEN_NAME}" \
-        --header "Content-Type: application/json" \
-        --header "User-Agent: instana/pipeline-feedback-orb/${version}" \
+        --header 'Content-Type: application/json' \
+        --user-agent "instana/pipeline-feedback-orb/${version}" \
         --data "{
     \"name\": \"${release_name}\",
     \"start\": $(date +%s)000,
