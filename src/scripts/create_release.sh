@@ -5,7 +5,7 @@ set -eo pipefail
 
 function create_release() {
     missing_dependencies=false
-    orb_version="${ORB_VERSION:-1.1.2}"
+    version=$(<.version)
 
     if ! which curl; then
         echo 'Missing dependency: The curl command is not available'
@@ -41,8 +41,6 @@ function create_release() {
         echo "Scope JSON is valid: ${OUTPUT}"
         exit 1
     fi
-
-    version=$(<.version)
 
     curl --location --request POST "${!INSTANA_ENDPOINT_URL_NAME}/api/releases" \
         --silent \
