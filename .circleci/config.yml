@@ -96,8 +96,7 @@ workflows:
             - checkout
             - run:
                 command: |
-                  echo "Working dir: $(pwd)"
-                  find / -name create_release.sh
+                  set -x
 
                   CURRENT_VERSION=$(circleci orb info instana/pipeline-feedback | grep 'Latest' | awk '{ print $2 }' | awk -F '@' '{ print $2}' )
                   SEMVER_INCREMENT=$(echo "${COMMIT_SUBJECT}" | sed -En 's/.*\[semver:(major|minor|patch|skip)\].*/\1/p')
