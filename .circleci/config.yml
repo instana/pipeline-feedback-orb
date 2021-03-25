@@ -103,6 +103,10 @@ workflows:
                   if [ "${SEMVER_INCREMENT}" = 'patch' ]; then NEXT_VERSION=$(echo "${CURRENT_VERSION}" | awk 'BEGIN{FS=OFS="."} {$3+=1} 1'); fi
 
                   sed -i '' -e "s/version='dev'.*/version='${NEXT_VERSION}'/" src/scripts/create_release.sh
+
+                  cat src/scripts/create_release.sh
+
+                  exit 1; # NO YOU DON'T RELEASE YET
           # requires:
           #   - integration-test-1
           filters:
