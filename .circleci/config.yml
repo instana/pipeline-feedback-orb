@@ -96,6 +96,7 @@ workflows:
             - checkout
             - run:
                 command: |
+                  echo "Working dir: $(pwd)"
                   find / -name create_release.sh
 
                   CURRENT_VERSION=$(circleci orb info instana/pipeline-feedback | grep 'Latest' | awk '{ print $2 }' | awk -F '@' '{ print $2}' )
