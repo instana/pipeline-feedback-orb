@@ -97,7 +97,6 @@ workflows:
             - run:
                 command: |
                   set -euo pipefail
-                  set -x
 
                   CURRENT_VERSION=$(circleci orb info instana/pipeline-feedback | grep 'Latest' | awk '{ print $2 }' | awk -F '@' '{ print $2}' )
                   COMMIT_SUBJECT=$(git log -1 --pretty=%s.)
@@ -107,17 +106,12 @@ workflows:
                   if [ "${SEMVER_INCREMENT}" = 'patch' ]; then NEXT_VERSION=$(echo "${CURRENT_VERSION}" | awk 'BEGIN{FS=OFS="."} {$3+=1} 1'); fi
 
                   sed -i -e "s/version='dev'.*/version='${NEXT_VERSION}'/" $(pwd)/src/scripts/create_release.sh
-
-                  cat $(pwd)/src/scripts/create_release.sh
-
-                  exit 1; # NO YOU DON'T RELEASE YET
           # requires:
           #   - integration-test-1
           filters:
             branches:
               only:
                 - main
-                - add-user-agent # TODO REMOVE BEFORE MERGING
 
   nightly:
     triggers:
