@@ -96,17 +96,18 @@ workflows:
             - checkout
             - run:
                 command: |
-                  set -x
+                  set -euo pipefail
 
                   CURRENT_VERSION=$(circleci orb info instana/pipeline-feedback | grep 'Latest' | awk '{ print $2 }' | awk -F '@' '{ print $2}' )
+                  COMMIT_SUBJECT=$(git log -1 --pretty=%s.)
                   SEMVER_INCREMENT=$(echo "${COMMIT_SUBJECT}" | sed -En 's/.*\[semver:(major|minor|patch|skip)\].*/\1/p')
                   if [ "${SEMVER_INCREMENT}" = 'major' ]; then NEXT_VERSION=$(echo "${CURRENT_VERSION}" | awk 'BEGIN{FS=OFS="."} {$1+=1} {$2=0} {$3=0} 1'); fi
                   if [ "${SEMVER_INCREMENT}" = 'minor' ]; then NEXT_VERSION=$(echo "${CURRENT_VERSION}" | awk 'BEGIN{FS=OFS="."} {$2+=1} {$3=0} 1'); fi
                   if [ "${SEMVER_INCREMENT}" = 'patch' ]; then NEXT_VERSION=$(echo "${CURRENT_VERSION}" | awk 'BEGIN{FS=OFS="."} {$3+=1} 1'); fi
 
-                  sed -i '' -e "s/version='dev'.*/version='${NEXT_VERSION}'/" src/scripts/create_release.sh
+                  sed -i '' -e "s/version='dev'.*/version='${NEXT_VERSION}'/" $(pwd)/src/scripts/create_release.sh
 
-                  cat src/scripts/create_release.sh
+                  cat $(pwd)/src/scripts/create_release.sh
 
                   exit 1; # NO YOU DON'T RELEASE YET
           # requires:
