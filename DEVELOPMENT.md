@@ -8,6 +8,23 @@
 * When adding configurations properties, remember to update both the [jobs](https://github.com/instana/pipeline-feedback-orb/tree/main/src/jobs) and the [command](https://github.com/instana/pipeline-feedback-orb/tree/main/src/commands)
 * Add [Bats](https://github.com/sstephenson/bats) tests for new functionality to the [tests](https://github.com/instana/pipeline-feedback-orb/tree/main/src/tests)
 
+## Testing
+
+There is a test script available in the `src/tests` folder. The test is executable with [bats](https://github.com/bats-core/bats-core). The script can be executed from the root dir by
+```bash
+INSTANA_ENDPOINT_URL=<<YOUR_ENDPOINT_URL>> INSTANA_API_TOKEN=<<YOUR_API_TOKEN>> \
+bats ./src/tests/create_release.bats
+```
+
+The application and service name in the test might be adjusted to your needs.
+The expected output of the test is
+```bash
+1: Create Global Release
+2: Create Application-scoped Release
+3: Create Service-scoped Release
+4: Malformed scope JSON
+```
+
 ## Release process
 
 The release process is pretty much the one [defined by the Orb Development Kit](https://circleci.com/docs/2.0/creating-orbs/), and it is triggered by `[semver:...]` tags in commit messages.

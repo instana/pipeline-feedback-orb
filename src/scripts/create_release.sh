@@ -3,6 +3,8 @@
 set -x
 set -eo pipefail
 
+readonly version='dev'
+
 function create_release() {
     missing_dependencies=false
 
@@ -25,7 +27,6 @@ function create_release() {
         release_name=$(echo "${INSTANA_RELEASE_NAME}" | envsubst)
     else
         echo 'The envsubst command is not available, skipping the interpolation of environment variables in the release name'
-
         release_name="${INSTANA_RELEASE_NAME}"
     fi
 
@@ -47,7 +48,8 @@ function create_release() {
         --fail \
         --show-error \
         --header "Authorization: apiToken ${!INSTANA_API_TOKEN_NAME}" \
-        --header "Content-Type: application/json" \
+        --header 'Content-Type: application/json' \
+        --user-agent "instana/pipeline-feedback-orb/${version}" \
         --data "{
     \"name\": \"${release_name}\",
     \"start\": $(date +%s)000,
