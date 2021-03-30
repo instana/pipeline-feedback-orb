@@ -91,7 +91,7 @@ workflows:
           add-pr-comment: false
           fail-if-semver-not-indicated: true
           publish-version-tag: true
-          ssh-fingerprints: 16:0b:f1:b0:af:47:67:d5:69:49:a4:d8:96:a8:42:8b
+          ssh-fingerprints: e1:e9:fc:f2:aa:55:70:f8:67:6e:8b:2a:2f:f1:35:46
           pre-steps:
             - checkout
             - run:
