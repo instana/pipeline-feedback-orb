@@ -1,7 +1,7 @@
 version: 2.1
 
 orbs:
-  pipeline-feedback: instana/pipeline-feedback@<<pipeline.parameters.dev-orb-version>>
+  #pipeline-feedback: instana/pipeline-feedback@<<pipeline.parameters.dev-orb-version>>
   docker: circleci/docker@1.5.0
   orb-tools: circleci/orb-tools@10.0
   bats: circleci/bats@1.0
