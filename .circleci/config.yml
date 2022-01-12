@@ -129,6 +129,7 @@ workflows:
       - docker/publish:
           path: default-executor/
           image: instana/pipeline-feedback-orb-executor
+          context: icr-publish
           registry: icr.io
           docker-username: ICR_LOGIN
           docker-password: ICR_PASSWORD
