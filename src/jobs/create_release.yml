@@ -7,7 +7,7 @@ docker:
 parameters:
   executor_image:
     type: string
-    default: instana/pipeline-feedback-orb-executor:latest
+    default: icr.io/instana/pipeline-feedback-orb-executor:latest
   endpoint:
     type: env_var_name
     default: INSTANA_ENDPOINT_URL
