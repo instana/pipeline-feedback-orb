@@ -114,13 +114,13 @@ workflows:
                 - main
 
   nightly:
-    triggers:
-      - schedule:
-          cron: "0 0 * * *"
-          filters:
-            branches:
-              only:
-                - main
+#    triggers:
+#      - schedule:
+#          cron: "0 0 * * *"
+#          filters:
+#            branches:
+#              only:
+#                - main
     jobs:
       - docker/hadolint:
           dockerfiles: default-executor/Dockerfile
