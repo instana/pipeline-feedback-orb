@@ -7,7 +7,7 @@ usage:
   version: "2.1"
 
   orbs:
-    pipeline-feedback: instana/pipeline-feedback@1.1.2
+    pipeline-feedback: instana/pipeline-feedback@1.3.1
 
   workflows:
     build_and_release_payment_service:
@@ -24,7 +24,7 @@ usage:
         - run: echo Build
     release_payment_service:
       docker:
-        - image: instana/pipeline-feedback-orb-executor:latest # Need to use a container with jq, curl and optionally envsubst
+        - image: icr.io/instana/pipeline-feedback-orb-executor:latest # Need to use a container with jq, curl and optionally envsubst
       steps:
         - pipeline-feedback/create_release: # Notify Instana that things are about to get interesting
             release_name: "My Awesome App release (CircleCI: ${CIRCLE_JOB}/${CIRCLE_BUILD_NUM})"
