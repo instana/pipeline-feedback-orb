@@ -91,6 +91,7 @@ workflows:
           add-pr-comment: false
           fail-if-semver-not-indicated: true
           publish-version-tag: true
+          # used to create the tag in GitHub
           ssh-fingerprints: e1:e9:fc:f2:aa:55:70:f8:67:6e:8b:2a:2f:f1:35:46
           pre-steps:
             - checkout
