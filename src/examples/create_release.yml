@@ -7,7 +7,7 @@ usage:
   version: "2.1"
 
   orbs:
-    pipeline-feedback: instana/pipeline-feedback@2.0.0
+    pipeline-feedback: instana/pipeline-feedback@2.0.1
 
   workflows:
     build_and_release_payment_service:
@@ -35,6 +35,10 @@ usage:
                 ],
                 "services": [
                   { "name": "Cool service #1" },
+                  { "name": "${CIRCLE_PROJECT_REPONAME}" },
+                  { "name": "${CIRCLE_PROJECT_REPONAME}.production" },
+                  { "name": "${CIRCLE_PROJECT_REPONAME}.staging" },
+                  { "name": "${CIRCLE_PROJECT_REPONAME}.dev" },
                   {
                     "name": "Cool service #2",
                     "scopedTo": {
