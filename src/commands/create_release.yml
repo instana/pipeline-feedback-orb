@@ -18,8 +18,16 @@ parameters:
     description: The name of this release in Instana.
   release_scope:
     type: string
-    description: >
-      JSON-encoded scoping information for the release.
+    description: |
+      JSON-encoded scoping information for the release. 
+      It can now have environments nests in the string to be replaced like below:
+      ```json
+        {
+          "services": [
+            {"name": "${CIRCLE_PROJECT_REPONAME}.${ENV}"}
+          ]
+        }
+      ```
       If not provided, the release will be marked as global to your tenant unit.
     default: "{}"
 

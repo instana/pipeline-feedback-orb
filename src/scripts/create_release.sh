@@ -36,7 +36,9 @@ function create_release() {
         INSTANA_RELEASE_SCOPE='{}'
     fi
 
-    echo "${INSTANA_RELEASE_SCOPE}" > scope.json
+    JSON_STRING_FULL=$(echo $INSTANA_RELEASE_SCOPE | jq | sed 's/\\/\\\\/g' | sed 's/"/\\"/g' | sed 's/`/\\`/g' )
+    INTERPOLATED_JSON=$(eval echo $JSON_STRING_FULL)
+    echo "${INTERPOLATED_JSON}" > scope.json
 
     if ! OUTPUT=$(jq empty scope.json 2>&1); then
         echo "Scope JSON is valid: ${OUTPUT}"
