@@ -36,7 +36,7 @@ function create_release() {
         INSTANA_RELEASE_SCOPE='{}'
     fi
 
-    JSON_STRING_FULL=$(echo $INSTANA_RELEASE_SCOPE | jq | sed 's/\\/\\\\/g' | sed 's/"/\\"/g' | sed 's/`/\\`/g' )
+    JSON_STRING_FULL=$(echo $INSTANA_RELEASE_SCOPE | jq -c | jq -R)
     INTERPOLATED_JSON=$(eval echo $JSON_STRING_FULL)
     echo "${INTERPOLATED_JSON}" > scope.json
 
