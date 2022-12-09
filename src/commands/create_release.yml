@@ -20,7 +20,7 @@ parameters:
     type: string
     description: |
       JSON-encoded scoping information for the release. 
-      It can now have environments nests in the string to be replaced like below:
+      The usage of environment variables is supported. Example:
       ```json
         {
           "services": [
