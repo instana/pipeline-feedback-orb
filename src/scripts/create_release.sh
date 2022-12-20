@@ -27,22 +27,21 @@ function create_release() {
         INSTANA_RELEASE_SCOPE='{}'
     fi
 
-    echo "Creating release '${release_name}'"
-    JSON_STRING_FULL=$(echo $INSTANA_RELEASE_SCOPE | jq -c | jq -R)
-
     if which envsubst; then
         release_name=$(echo "${INSTANA_RELEASE_NAME}" | envsubst)
-        INTERPOLATED_JSON=$(echo $JSON_STRING_FULL | envsubst)
+        INTERPOLATED_JSON=$(echo "${INSTANA_RELEASE_SCOPE}" | envsubst)
     else
         echo 'The envsubst command is not available, skipping the interpolation of environment variables in the release name and release scope'
         release_name="${INSTANA_RELEASE_NAME}"
-        INTERPOLATED_JSON=$(echo $JSON_STRING_FULL)
+        INTERPOLATED_JSON="${INSTANA_RELEASE_SCOPE}"
     fi
 
-    echo "${INTERPOLATED_JSON}" >scope.json
+    echo "Creating release '${release_name}'"
+
+    echo "${INTERPOLATED_JSON}" > scope.json
 
     if ! OUTPUT=$(jq empty scope.json 2>&1); then
-        echo "Scope JSON is valid: ${OUTPUT}"
+        echo "Scope JSON is invalid: ${OUTPUT}"
         exit 1
     fi
 
