@@ -6,6 +6,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+## [2.0.1] - 2022-12-20
+
+- Include the ability to parse environments in `release_scope` parameter
 ## [2.0.0] - 2022-03-31
 
 - Use icr.io as registry for the default executor

@@ -46,3 +46,16 @@ export INSTANA_RELEASE_NAME="BATS 2 Test CircleCI release"
 
     [ "$status" -eq 1 ]
 }
+
+@test '5: Create Service-scoped Release using environments' {
+    export LOCAL_TEST5_SERVICE_NAME=testing
+    export INSTANA_RELEASE_SCOPE='
+    {
+        "services": [{
+            "name": "${LOCAL_TEST5_SERVICE_NAME}"
+        }]
+    }'
+
+    run ./src/scripts/create_release.sh
+    [ "$status" -eq 0 ]
+}

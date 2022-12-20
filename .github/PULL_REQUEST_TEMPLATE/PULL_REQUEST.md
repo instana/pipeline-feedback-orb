@@ -1,34 +1,28 @@
 
 **SEMVER Update Type:**
-<<<<<<< HEAD
 
-=======
->>>>>>> [semver:skip] Initial commit.
 - [ ] Major
 - [ ] Minor
 - [ ] Patch
 
-## Description:
+## Description
 
 <!---
   Describe your changes in detail, preferably in an imperative mood,
   i.e., "add `commandA` to `jobB`"
  -->
 
-## Motivation:
+## Motivation
 
 <!---
   Share any open issues this PR references or otherwise describe the motivation to submit this pull request.
  -->
 
  **Closes Issues:**
-<<<<<<< HEAD
 
-=======
->>>>>>> [semver:skip] Initial commit.
--  ISSUE URL
+- ISSUE URL
 
-## Checklist:
+## Checklist
 
 <!--
 	Thank you for contributing to CircleCI Orbs!
@@ -38,8 +32,4 @@
 
 - [ ] All new jobs, commands, executors, parameters have descriptions.
 - [ ] Usage Example version numbers have been updated.
-<<<<<<< HEAD
 - [ ] Changelog has been updated.
-=======
-- [ ] Changelog has been updated.
->>>>>>> [semver:skip] Initial commit.
