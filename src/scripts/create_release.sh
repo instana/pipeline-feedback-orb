@@ -31,8 +31,7 @@ function create_release() {
         release_name=$(echo "${INSTANA_RELEASE_NAME}" | envsubst)
         INTERPOLATED_JSON=$(echo "${INSTANA_RELEASE_SCOPE}" | envsubst)
     else
-        echo 'The envsubst command is not available, skipping the interpolation of environment variables
-        in the release name and release scope'
+        echo 'The envsubst command is not available, skipping the interpolation of environment variables in the release name and release scope'
         release_name="${INSTANA_RELEASE_NAME}"
         INTERPOLATED_JSON="${INSTANA_RELEASE_SCOPE}"
     fi

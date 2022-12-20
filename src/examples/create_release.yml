@@ -1,7 +1,9 @@
 description: >
   The sample usage of the Instana Pipeline Feedback CircleCI Orb shows a workflow that includes the build and release of an application.
-  Before the release is performed, data about the upcoming release is submitted to Instana, including CircleCI data like the build identifier and build number in the release name to be displayed in Instana.
-  In the example, the release in Instana is scoped to the `My Awesome App` Application Perspective and, additionally, two services, `Cool service #1` and `Cool service #2`.
+  Before the release is performed, data about the upcoming release is submitted to Instana, including CircleCI data like the build identifier and
+  build number in the release name to be displayed in Instana.
+  In the example, the release in Instana is scoped to the `My Awesome App` Application Perspective and, additionally,
+  two services, `Cool service #1` and `Cool service #2`.
 
 usage:
   version: "2.1"

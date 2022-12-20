@@ -18,8 +18,8 @@ parameters:
     description: The name of this release in Instana.
   release_scope:
     type: string
-    description: |
-      JSON-encoded scoping information for the release. 
+    description: >
+      JSON-encoded scoping information for the release.
       The usage of environment variables is supported. Example:
       ```json
         {

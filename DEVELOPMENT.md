@@ -8,6 +8,14 @@
 * When adding configurations properties, remember to update both the [jobs](https://github.com/instana/pipeline-feedback-orb/tree/main/src/jobs) and the [command](https://github.com/instana/pipeline-feedback-orb/tree/main/src/commands)
 * Add [Bats](https://github.com/sstephenson/bats) tests for new functionality to the [tests](https://github.com/instana/pipeline-feedback-orb/tree/main/src/tests)
 
+## Linting
+
+You can run
+```bash
+yamllint -d "{extends: relaxed, rules: {line-length: {max: 200}}}" .
+```
+locally to validate your yaml files match the ORB linting rules.
+
 ## Testing
 
 There is a test script available in the `src/tests` folder. The test is executable with [bats](https://github.com/bats-core/bats-core). The script can be executed from the root dir by
