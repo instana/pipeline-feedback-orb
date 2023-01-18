@@ -92,7 +92,7 @@ workflows:
           fail-if-semver-not-indicated: true
           publish-version-tag: true
           # used to create the tag in GitHub
-          ssh-fingerprints: e1:e9:fc:f2:aa:55:70:f8:67:6e:8b:2a:2f:f1:35:46
+          ssh-fingerprints: 4b:ad:86:48:18:0d:b9:80:d0:ef:34:df:22:18:ab:0c
           pre-steps:
             - checkout
             - run:
